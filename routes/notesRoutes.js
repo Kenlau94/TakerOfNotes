@@ -1,8 +1,11 @@
+//imports
 const express = require("express");
 const path = require("path");
 const fsPromises = require("fs").promises;
 const { v4: uuidv4 } = require("uuid");
 const notesData = require("../db/db.json");
+
+// handling routers get, post, delete
 const router = express.Router();
 router.use(express.json());
 router.get("/", (req, res) => {
@@ -39,3 +42,4 @@ router.delete("/:id", async (req, res) => {
   }
 });
 module.exports = router;
+//exports 👆
