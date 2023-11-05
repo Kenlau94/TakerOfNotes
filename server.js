@@ -1,17 +1,16 @@
 const express = require("express");
-const html_routes = require("./Develop/public/routes/html-routes");
-const api_routes = require("./Develop/public/routes/api-routes");
-const PORT = process.env.PORT || 3001;
-// dynamically set the port
+const path = require("path");
 const app = express();
-
-// Express middleware will always run the operation in the order from top to bottom "order matters"
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(express.static("public"));
-app.use(html_routes);
-app.use(api_routes);
-
+const PORT = process.env.PORT || 5001;
+const notesRoutes = require("./routes/notesRoutes");
+app.use(express.static("./public"));
+app.use("/api/notes", notesRoutes);
+app.get("/notes", (req, res) => {
+  res.sendFile(path.join(__dirname, "./public/notes.html"));
+});
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log("Server listening on localhost:5001");
 });
