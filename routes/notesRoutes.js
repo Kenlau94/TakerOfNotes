@@ -11,6 +11,7 @@ router.use(express.json());
 router.get("/", (req, res) => {
   res.json(notesData);
 });
+
 router.post("/", async (req, res) => {
   req.body.id = uuidv4();
   notesData.push(req.body);
@@ -24,6 +25,7 @@ router.post("/", async (req, res) => {
     res.status(500).json({ error: "Error; Note was not written to db.json" });
   }
 });
+
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
   const noteToDelete = notesData.findIndex((note) => note.id === id);
@@ -32,6 +34,7 @@ router.delete("/:id", async (req, res) => {
   }
   notesData.splice(noteToDelete, 1);
   const dbFilePath = path.resolve("db", "db.json");
+
   try {
     await fsPromises.writeFile(dbFilePath, JSON.stringify(notesData, null, 2));
     res.status(204).json(notesData);
@@ -42,4 +45,3 @@ router.delete("/:id", async (req, res) => {
   }
 });
 module.exports = router;
-//exports 👆
