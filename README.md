@@ -71,3 +71,4 @@ Application allows users to delete notes.
 ## Heroku
 
 [Heroku](https://notes-appp-0a21d57c2c94.herokuapp.com/notes)
+![image](https://github.com/Kenlau94/TakerOfNotes/assets/134185724/206e53ca-1cb5-4ff5-b498-9e0dda985758)
